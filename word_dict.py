@@ -1,15 +1,20 @@
 # this program accepts input file, gets the words and outputs them according to the time they appear
 
 file = input("enter file name: ")
+try:
+    fhandle = open(file)
+except:
+    print("file cannot be opened")
+    quit()
 
-fhandle = open(file)
 all_words = dict()
 
 
 for line in fhandle:
     line = line.rstrip()
     words = line.split()
-
+    if len(words) < 1:
+        continue
     for word in words:
         all_words[word] = all_words.get(word, 0) + 1
 
